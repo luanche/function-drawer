@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider, Space, InputNumber, Button } from "antd";
+import { Slider, Space, Button } from "antd";
 
 interface Props {
   name: string;
@@ -17,6 +17,7 @@ export const SliderInput: React.FC<Props> = ({ name, value, onChange }) => {
           min={-1}
           max={1}
           step={0.01}
+          marks={{ [-1]: "-1", 0: "0", 1: "+1" }}
           value={value}
           onChange={onChange}
         />

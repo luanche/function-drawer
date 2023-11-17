@@ -1,4 +1,4 @@
-import { Input, InputNumber, Slider, Space, message } from "antd";
+import { Input, Space } from "antd";
 import functionPlot from "function-plot";
 import React, { useEffect, useRef, useState } from "react";
 import { SliderInput } from "./slider/index";
@@ -55,30 +55,30 @@ export const Plot: React.FC<Props> = () => {
           functions[2].color = undefined;
         }
       } catch (error) {}
-      console.log(JSON.parse(JSON.stringify(functions)));
       functionPlot({
+        title: `a * (${functionA}) + b * (${functionB})`,
         target: chart.current,
-        yAxis: { domain: [-15, 15] },
         grid: true,
         data: functions,
       });
     }
-  }, [chart, paramA, paramB, functionA, functionB]);
+  }, [chart, paramA, paramB, functionA, functionB, functions]);
 
   return (
     <div>
-      <h3>{`a * (${functionA}) + b * (${functionB})`}</h3>
-      <div ref={chart} />
+      <div style={{ marginTop: 20 }} ref={chart} />
       <div style={{ display: "none" }} ref={chartForCheck} />
       <div>
         <Space style={{ marginBottom: 10 }}>
           <Input
+            allowClear
             width={120}
             value={functionA}
             onChange={(e) => setFunctionA(e.target.value)}
           />
           +
           <Input
+            allowClear
             width={120}
             value={functionB}
             onChange={(e) => setFunctionB(e.target.value)}
